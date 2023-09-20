@@ -168,8 +168,6 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # django_heroku.settings(locals())
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.web-production-88e60.up.railway.app",
-    "https://web-production-dd8f.up.railway.app/*",
-    "https://*.web-production-7479.up.railway.app/login/*",
+    "https://*.web-production-515f.up.railway.app/*"
     # when you create new project on railway dont forget to add new path here
 ]
