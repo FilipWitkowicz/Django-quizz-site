@@ -1,0 +1,118 @@
+{% extends 'main.html' %}
+
+{% block content %}
+  <main class="profile-page layout layout--3">
+    <div class="container">
+      <!-- Topics Start -->
+      <!-- <div class="topics">
+        
+        <p>Followed by:</p>
+        <hr>
+        {% for follow in followed_by %}
+          {{follow.name}}
+        {% endfor %}
+
+        <p>Follows:</p>
+        <hr>
+        {% for follow in follows %}
+          {{follow.name}}
+        {% endfor %}
+      </div> -->
+      <div class="activities">
+        <div class="activities__header">
+          <h2>Followed by:</h2>
+        </div>
+
+        {% for follow in followed_by %} 
+          <div class="activities__box">
+            <div class="activities__boxHeader roomListRoom__header">
+              <a href="{% url 'user-profile' follow.id %}" class="roomListRoom__author">
+                <div class="avatar avatar--small">
+                  <img src="{{follow.avatar.url}}" />
+                </div>
+                <p>
+                  {{follow.name}}
+                </p>
+              </a>
+              <div class="roomListRoom__actions">
+              </div>
+
+            </div>
+          </div>
+        {% endfor %}
+
+        <div class="activities__header">
+          <h2>Follows:</h2>
+        </div>
+
+        {% for follow in follows %} 
+          <div class="activities__box">
+            <div class="activities__boxHeader roomListRoom__header">
+              <a href="{% url 'user-profile' follow.id %}" class="roomListRoom__author">
+                <div class="avatar avatar--small">
+                  <img src="{{follow.avatar.url}}" />
+                </div>
+                <p>
+                  {{follow.name}}
+                </p>
+              </a>
+              <div class="roomListRoom__actions">
+              </div>
+
+            </div>
+          </div>
+        {% endfor %}
+
+      </div>
+
+      
+      <!-- Topics End -->
+
+      <!-- Room List Start -->
+      <div class="roomList">
+        <div class="profile">
+          <div class="profile__avatar">
+            <div class="avatar avatar--large active">
+              <img src="{{ user.avatar.url }}" />
+            </div>
+          </div>
+          <div class="profile__info">
+            <h3>{{user.name}}</h3>
+            <p>@{{user.username}}</p>
+            <p>{{user.current_score}} Points</p>
+            <p>{{user.all_time_score}} All Time Points (Include points earned in quests that are currently not available)</p>
+            
+
+            {% if request.user == user %}
+              <a href="{% url 'edit-user' request.user.id %}" class="btn btn--main btn--pill">Edit Profile</a>
+            {% else %}
+              {% if request.user in followed_by %}
+                <p href="" class="btn btn--main btn--pill">Followed</p>
+              {% else %}
+                <form action="" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn--main btn--pill">Follow</button>
+                </form>
+              {% endif %}
+            {% endif %}
+            <a class="btn btn--main btn--pill" href="{% url 'followPage' user.id %}">View follows</a>
+
+          </div>
+          <div class="profile__about">
+            <h3>About</h3>
+            <p>
+              {{user.bio}}
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Room List End -->
+
+      <!-- Activities Start -->
+      <div class="activities">
+      </div>
+      
+      <!-- Activities End -->
+    </div>
+  </main>
+{% endblock content %}

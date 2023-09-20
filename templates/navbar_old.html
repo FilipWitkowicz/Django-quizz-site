@@ -1,0 +1,12 @@
+<a href="{% url 'home' %}">
+    <h1>LOGO</h1>
+</a>
+
+{% if request.user.is_authenticated %}
+    <p>Hello {{request.user.name}}, your current score is: {{request.user.score}}</p>
+    <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
+    <hr>
+<hr>

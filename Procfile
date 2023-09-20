@@ -1,0 +1,1 @@
+web: gunicorn quizzlol.wsgi --log-file -

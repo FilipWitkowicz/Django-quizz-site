@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <p>{{quest.name}}</p>
+    <hr>
+    <p>Question: {{quest.question}}</p>
+    {% if quest.audio.url != None %}
+        <audio src='{{quest.audio.url}}' controls preload='auto' autobuffer></audio>
+        <hr>
+    {% endif %}
+
+    {% if quest.image.url != None %}
+        <img style="width: 200px;" src="{{quest.image.url}}"/>
+        <hr>
+    {% endif %}
+
+    <p>punkty: {{quest.value}}</p>
+    {% if completed == False %}
+        <form method="POST" action="">
+            {% csrf_token %}
+            <input type="text" name="body" placeholder="Write your answer here...">
+        </form>
+    {% else %}
+        <p>You already Answered</p>
+        <p>{{quest.text_answer}}</p>
+    {% endif %}
+{% endblock content %}
+
