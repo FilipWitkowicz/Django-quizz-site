@@ -106,8 +106,8 @@ DATABASES = {
         "NAME": "railway",
         "USER": "postgres",
         "PASSWORD": config("DB_PASSWORD"),
-        "HOST": "containers-us-west-104.railway.app",
-        "PORT": "7176",
+        "HOST": "monorail.proxy.rlwy.net",
+        "PORT": "37375",
     }
 }
 
