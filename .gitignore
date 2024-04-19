@@ -1,3 +1,15 @@
+# Environments
+.env
+.venv
+env/
+venv/
+
+#other
+
+package-lock.json
+.vscode/
+
+
 #django
 *.log
 *.pot
